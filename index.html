@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Central de Aplicações — Q'Delícia Frutas.">
+<title>Central de Aplicações — Q'Delícia</title>
+<link rel="icon" href="https://i.ytimg.com/vi/oDEzUfK-iU8/maxresdefault.jpg" type="image/jpeg">
+<style id="qdTheme">
+/* ============================================================
+   Q'DELÍCIA — DESIGN SYSTEM v3 (tokens inline — página estática)
+   ============================================================ */
+:root {
+  --bg:        #0d1117;
+  --bg-2:      #161b22;
+  --surface:   #1c2333;
+  --surface-2: #21262d;
+  --surface-3: #2d333b;
+
+  --border:    #30363d;
+  --border-2:  #3d444d;
+
+  --text:      #e6edf3;
+  --text-2:    #8b949e;
+  --text-3:    #656d76;
+
+  --brand:        #f97316;
+  --brand-hover:  #fb923c;
+  --brand-soft:   rgba(249,115,22,.14);
+  --brand-glow:   rgba(249,115,22,.28);
+
+  --success:       #3fb950;
+  --success-hover: #52cb61;
+  --success-soft:  rgba(63,185,80,.13);
+
+  --danger:        #f85149;
+  --danger-hover:  #ff6b6b;
+  --danger-soft:   rgba(248,81,73,.13);
+
+  --warning:       #d29922;
+  --warning-hover: #e3b341;
+  --warning-soft:  rgba(210,153,34,.13);
+
+  --info:          #388bfd;
+  --info-hover:    #58a6ff;
+  --info-soft:     rgba(56,139,253,.13);
+
+  --violet:        #8957e5;
+  --violet-hover:  #a371f7;
+  --violet-soft:   rgba(137,87,229,.13);
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.4), 0 1px 2px rgba(0,0,0,.24);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.5);
+  --shadow-lg: 0 16px 48px rgba(0,0,0,.6);
+
+  --radius:    10px;
+  --radius-sm: 6px;
+  --font:      'Segoe UI', system-ui, -apple-system, Roboto, Arial, sans-serif;
+
+  --grad-brand:  linear-gradient(135deg,#f97316 0%,#ea580c 100%);
+  --grad-violet: linear-gradient(135deg,#8b5cf6,#7c3aed);
+  --grad-header: linear-gradient(135deg,#1e1b4b 0%,#312e81 100%);
+  --grad-nav:    linear-gradient(180deg,#1e1b4b 0%,#312e81 100%);
+}
+
+html[data-theme="light"] {
+  --bg:        #f6f8fa;
+  --bg-2:      #eaeef2;
+  --surface:   #ffffff;
+  --surface-2: #f6f8fa;
+  --surface-3: #eaeef2;
+
+  --border:    #d0d7de;
+  --border-2:  #b3bcc5;
+
+  --text:      #1f2328;
+  --text-2:    #656d76;
+  --text-3:    #9198a1;
+
+  --brand:       #7c3aed;
+  --brand-hover: #8b5cf6;
+  --brand-soft:  rgba(124,58,237,.10);
+  --brand-glow:  rgba(124,58,237,.20);
+
+  --success:       #1a7f37;
+  --success-hover: #2da44e;
+  --success-soft:  rgba(26,127,55,.09);
+
+  --danger:        #cf222e;
+  --danger-hover:  #a40e26;
+  --danger-soft:   rgba(207,34,46,.09);
+
+  --warning:       #9a6700;
+  --warning-hover: #bf8700;
+  --warning-soft:  rgba(154,103,0,.09);
+
+  --info:          #0969da;
+  --info-hover:    #1f7adb;
+  --info-soft:     rgba(9,105,218,.09);
+
+  --violet:        #6e40c9;
+  --violet-hover:  #8957e5;
+  --violet-soft:   rgba(110,64,201,.09);
+
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.07), 0 1px 2px rgba(0,0,0,.04);
+  --shadow-md: 0 4px 16px rgba(0,0,0,.09);
+  --shadow-lg: 0 12px 40px rgba(0,0,0,.13);
+
+  --grad-brand:  linear-gradient(135deg,#8b5cf6 0%,#6d28d9 100%);
+  --grad-header: linear-gradient(135deg,#7c3aed 0%,#4c1d95 100%);
+  --grad-nav:    linear-gradient(180deg,#7c3aed 0%,#4c1d95 100%);
+}
+html[data-theme="light"] { color-scheme: light; }
+html { color-scheme: dark; }
+
+body, .header, .qd-card, .app-card, .qd-btn, .hub-nav-panel {
+  transition: background-color .25s ease, color .25s ease, border-color .22s ease, box-shadow .22s ease;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; }
+body {
+  background: var(--bg); color: var(--text);
+  font-family: var(--font); font-size: 14px; line-height: 1.5;
+  display: flex; flex-direction: column;
+  min-height: 100vh;
+}
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border-2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: var(--text-3); }
+
+::selection { background: var(--brand-soft); color: var(--text); }
+:focus-visible { outline: 2px solid var(--brand); outline-offset: 2px; }
+
+button { font-family: inherit; }
+a { text-decoration: none; color: inherit; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.header {
+  display: flex; align-items: center; gap: 12px;
+  min-height: 56px; padding: 0 20px; flex-shrink: 0;
+  background: var(--grad-header);
+  border-bottom: 1px solid var(--border);
+  color: #fff; position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 10px rgba(0,0,0,.25);
+}
+.header-left { display: flex; align-items: center; gap: 12px; flex: 1; min-width: 0; }
+.header-logo {
+  height: 32px; width: auto; max-width: 110px;
+  border-radius: 6px; object-fit: contain; flex-shrink: 0;
+  background: #fff; padding: 2px;
+}
+.header h1 { font-size: 15px; font-weight: 700; color: #fff; margin: 0; letter-spacing: -.01em; line-height: 1.3; }
+.header-sub { font-size: 11px; color: rgba(255,255,255,.78); display: block; margin-top: 1px; }
+.header-actions { display: flex; align-items: center; gap: 6px; margin-left: auto; flex-shrink: 0; }
+
+.theme-btn {
+  width: 32px; height: 32px; border-radius: 7px;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.1); color: #fff;
+  cursor: pointer; font-size: 14px; line-height: 1;
+  display: inline-flex; align-items: center; justify-content: center;
+  transition: background .13s, transform .07s, border-color .13s;
+  flex-shrink: 0; padding: 0;
+}
+.theme-btn:hover { background: rgba(255,255,255,.22); border-color: rgba(255,255,255,.4); }
+.theme-btn:active { transform: scale(.94); }
+.theme-btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+/* ============================================================
+   CONTEÚDO
+   ============================================================ */
+.main { flex: 1; width: 100%; max-width: 1200px; margin: 0 auto; padding: 28px 24px 90px; }
+
+.section-title {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 16px; font-weight: 800; color: var(--text);
+  margin-bottom: 6px;
+}
+.section-title .st-ic {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  font-size: 16px; flex-shrink: 0;
+}
+.st-log { background: var(--info-soft); }
+.st-pes { background: var(--violet-soft); }
+.section-desc { font-size: 12px; color: var(--text-3); margin-bottom: 16px; }
+.hub-section { margin-bottom: 36px; }
+
+.apps-grid {
+  display: grid; gap: 12px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+
+.app-card {
+  display: flex; align-items: center; gap: 12px;
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 14px 16px;
+  box-shadow: var(--shadow-sm);
+  cursor: pointer; position: relative;
+  transition: border-color .13s, background .13s, box-shadow .13s, transform .07s;
+}
+.app-card:hover {
+  border-color: var(--brand); background: var(--surface-2);
+  box-shadow: 0 0 0 2px var(--brand-soft), var(--shadow-md);
+}
+.app-card:active { transform: scale(.985); }
+
+.app-ic {
+  width: 40px; height: 40px; border-radius: 9px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px;
+  background: var(--surface-3); border: 1px solid var(--border);
+}
+.app-card:hover .app-ic { background: var(--brand-soft); border-color: var(--brand); }
+
+.app-info { flex: 1; min-width: 0; }
+.app-name { font-size: 13px; font-weight: 700; color: var(--text); line-height: 1.3; }
+.app-domain { font-size: 11px; color: var(--text-3); margin-top: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+.app-arrow {
+  flex-shrink: 0; font-size: 13px; color: var(--text-3);
+  transition: transform .13s, color .13s;
+}
+.app-card:hover .app-arrow { transform: translate(2px,-2px); color: var(--brand); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 14px 20px; text-align: center;
+  font-size: 12px; color: var(--text-3); flex-shrink: 0;
+  background: var(--surface-2);
+}
+
+/* ============================================================
+   MENU NAV SHOW/HIDE DISCRETO
+   ============================================================ */
+.hub-nav-fab {
+  position: fixed; right: 18px; bottom: 18px; z-index: 1000;
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.25);
+  background: var(--grad-nav); color: #fff;
+  cursor: pointer; font-size: 18px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 16px rgba(0,0,0,.35);
+  transition: background .13s, transform .13s, box-shadow .13s;
+}
+.hub-nav-fab:hover { filter: brightness(1.1); box-shadow: 0 6px 20px rgba(0,0,0,.4); }
+.hub-nav-fab:active { transform: scale(.94); }
+
+.hub-nav-panel {
+  position: fixed; right: 18px; bottom: 76px; z-index: 999;
+  min-width: 220px;
+  background: var(--surface); border: 1px solid var(--border-2);
+  border-radius: 12px; padding: 10px;
+  box-shadow: var(--shadow-lg);
+  transform-origin: bottom right;
+  animation: hubNavIn .18s cubic-bezier(.22,1,.36,1);
+}
+.hub-nav-panel.hidden { display: none; }
+@keyframes hubNavIn {
+  from { opacity: 0; transform: translateY(8px) scale(.96); }
+  to   { opacity: 1; transform: none; }
+}
+
+.hub-nav-group { margin-bottom: 6px; }
+.hub-nav-group:last-child { margin-bottom: 0; }
+.hub-nav-label {
+  font-size: 10px; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--text-3);
+  padding: 4px 10px 2px;
+}
+.hub-nav-link {
+  display: flex; align-items: center; gap: 8px;
+  width: 100%; padding: 8px 10px;
+  border: none; border-radius: 7px;
+  background: transparent; color: var(--text-2);
+  font: 600 12.5px var(--font); cursor: pointer; text-align: left;
+  transition: background .12s, color .12s;
+}
+.hub-nav-link:hover { background: var(--brand-soft); color: var(--brand); }
+.hub-nav-link .hn-ic { font-size: 14px; width: 18px; text-align: center; flex-shrink: 0; }
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
+@media (max-width: 768px) {
+  .header { padding: 0 12px; min-height: 50px; gap: 8px; }
+  .header h1 { font-size: 13px; }
+  .header-logo { height: 28px; }
+  .main { padding: 20px 14px 90px; }
+  .apps-grid { grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); }
+  .app-card { padding: 12px; }
+  .app-ic { width: 36px; height: 36px; font-size: 18px; }
+  .hub-nav-fab { right: 12px; bottom: 12px; width: 44px; height: 44px; }
+  .hub-nav-panel { right: 12px; bottom: 64px; min-width: 200px; }
+}
+@media (max-width: 480px) {
+  .apps-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <img src="https://i.ytimg.com/vi/oDEzUfK-iU8/maxresdefault.jpg" alt="Q'Delícia" class="header-logo"
+         onerror="this.style.display='none'">
+    <div>
+      <h1>Q'Delícia</h1>
+      <span class="header-sub">Central de Aplicações</span>
+    </div>
+  </div>
+  <div class="header-actions">
+    <button type="button" class="theme-btn" id="themeToggleBtn" title="Alternar tema claro/escuro" aria-label="Alternar tema">
+      <svg id="themeIcon" viewBox="0 0 24 24">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- CONTEÚDO -->
+<main class="main">
+
+  <!-- LOGÍSTICA -->
+  <section class="hub-section" id="sec-logistica">
+    <h2 class="section-title"><span class="st-ic st-log">🚚</span> Logística</h2>
+    <p class="section-desc">Aplicações de acompanhamento, conferência e controle operacional.</p>
+    <div class="apps-grid">
+      <a class="app-card" href="https://controle-bi.vercel.app/" target="_blank" rel="noopener">
+        <span class="app-ic">📊</span>
+        <span class="app-info">
+          <span class="app-name">BI</span>
+          <span class="app-domain">controle-bi.vercel.app</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+      <a class="app-card" href="https://controle-volumes.vercel.app/" target="_blank" rel="noopener">
+        <span class="app-ic">📦</span>
+        <span class="app-info">
+          <span class="app-name">Controle de Volumes</span>
+          <span class="app-domain">controle-volumes.vercel.app</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+      <a class="app-card" href="https://rotas-e-espelhos.vercel.app/" target="_blank" rel="noopener">
+        <span class="app-ic">🗺️</span>
+        <span class="app-info">
+          <span class="app-name">Espelhos (Lote)</span>
+          <span class="app-domain">rotas-e-espelhos.vercel.app</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+      <a class="app-card" href="https://gestao-blond.vercel.app/" target="_blank" rel="noopener">
+        <span class="app-ic">📋</span>
+        <span class="app-info">
+          <span class="app-name">Acompanhamentos</span>
+          <span class="app-domain">gestao-blond.vercel.app</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+      <a class="app-card" href="https://controle-notas-iota.vercel.app/" target="_blank" rel="noopener">
+        <span class="app-ic">🧾</span>
+        <span class="app-info">
+          <span class="app-name">Notas</span>
+          <span class="app-domain">controle-notas-iota.vercel.app</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+  <!-- PESSOAL -->
+  <section class="hub-section" id="sec-pessoal">
+    <h2 class="section-title"><span class="st-ic st-pes">👥</span> Pessoal</h2>
+    <p class="section-desc">Aplicações de gestão de pessoas, ações e promoções.</p>
+    <div class="apps-grid">
+      <a class="app-card" href="https://controle-feriados.vercel.app/" target="_blank" rel="noopener">
+        <span class="app-ic">🗓️</span>
+        <span class="app-info">
+          <span class="app-name">Feriados</span>
+          <span class="app-domain">controle-feriados.vercel.app</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+      <a class="app-card" href="https://controle-degustacoes.vercel.app/" target="_blank" rel="noopener">
+        <span class="app-ic">🍇</span>
+        <span class="app-info">
+          <span class="app-name">Degustações</span>
+          <span class="app-domain">controle-degustacoes.vercel.app</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+      <a class="app-card" href="https://jonatasandrade8.github.io/AppQD/index.html" target="_blank" rel="noopener">
+        <span class="app-ic">🛒</span>
+        <span class="app-info">
+          <span class="app-name">App-Prom</span>
+          <span class="app-domain">jonatasandrade8.github.io</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+      <a class="app-card" href="https://formulario-acao-qd.vercel.app/" target="_blank" rel="noopener">
+        <span class="app-ic">🎯</span>
+        <span class="app-info">
+          <span class="app-name">Form Ação</span>
+          <span class="app-domain">formulario-acao-qd.vercel.app</span>
+        </span>
+        <span class="app-arrow">↗</span>
+      </a>
+    </div>
+  </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  Q'Delícia — Central de Aplicações
+</footer>
+
+<!-- MENU NAV SHOW/HIDE DISCRETO -->
+<button type="button" class="hub-nav-fab" id="hubNavFab" title="Menu de seções" aria-label="Menu de seções" aria-expanded="false">☰</button>
+<nav class="hub-nav-panel hidden" id="hubNavPanel">
+  <div class="hub-nav-group">
+    <div class="hub-nav-label">Seções</div>
+    <button type="button" class="hub-nav-link" data-target="sec-logistica"><span class="hn-ic">🚚</span> Logística</button>
+    <button type="button" class="hub-nav-link" data-target="sec-pessoal"><span class="hn-ic">👥</span> Pessoal</button>
+  </div>
+</nav>
+
+<script>
+/* ==================== TEMA ==================== */
+(function () {
+  var saved = 'dark';
+  try {
+    saved = localStorage.getItem('qd_theme') || 'dark';
+  } catch (e) {}
+  document.documentElement.setAttribute('data-theme', saved);
+  atualizarIconeTema(saved);
+})();
+
+function obterTema() {
+  var t = document.documentElement.getAttribute('data-theme') || 'dark';
+  return t === 'light' ? 'light' : 'dark';
+}
+
+function atualizarIconeTema(theme) {
+  var icon = document.getElementById('themeIcon');
+  if (!icon) return;
+  if (theme === 'light') {
+    icon.innerHTML =
+      '<circle cx="12" cy="12" r="5"/>' +
+      '<line x1="12" y1="1" x2="12" y2="3"/>' +
+      '<line x1="12" y1="21" x2="12" y2="23"/>' +
+      '<line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>' +
+      '<line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>' +
+      '<line x1="1" y1="12" x2="3" y2="12"/>' +
+      '<line x1="21" y1="12" x2="23" y2="12"/>' +
+      '<line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>' +
+      '<line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>';
+  } else {
+    icon.innerHTML = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
+  }
+}
+
+function toggleTema() {
+  var atual = obterTema();
+  var novo = atual === 'dark' ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', novo);
+  try { localStorage.setItem('qd_theme', novo); } catch (e) {}
+  atualizarIconeTema(novo);
+}
+
+/* ==================== MENU NAV SHOW/HIDE ==================== */
+(function () {
+  var fab = document.getElementById('hubNavFab');
+  var panel = document.getElementById('hubNavPanel');
+
+  function setOpen(open) {
+    panel.classList.toggle('hidden', !open);
+    fab.setAttribute('aria-expanded', open ? 'true' : 'false');
+    fab.innerHTML = open ? '✕' : '☰';
+  }
+
+  fab.addEventListener('click', function (e) {
+    e.stopPropagation();
+    setOpen(panel.classList.contains('hidden'));
+  });
+
+  panel.addEventListener('click', function (e) {
+    var link = e.target.closest('.hub-nav-link');
+    if (!link) return;
+    var target = document.getElementById(link.getAttribute('data-target'));
+    setOpen(false);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
+
+  document.addEventListener('click', function (e) {
+    if (!panel.classList.contains('hidden') && !panel.contains(e.target) && !fab.contains(e.target)) {
+      setOpen(false);
+    }
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && !panel.classList.contains('hidden')) setOpen(false);
+  });
+})();
+
+/* ==================== INICIALIZAÇÃO ==================== */
+document.getElementById('themeToggleBtn').addEventListener('click', toggleTema);
+</script>
+</body>
+</html>
